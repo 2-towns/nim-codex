@@ -1,2 +1,2 @@
 minissdpd/getifaddr.c symlink=file
-getifaddr.c symlink=file
+vendor/nim-nat-traversal/vendor/minissdpd/getifaddr.c symlink=file
