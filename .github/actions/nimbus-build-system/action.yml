@@ -171,10 +171,8 @@ runs:
     - name: Build Nim and Codex dependencies
       shell: ${{ inputs.shell }} {0}
       run: |
-        ls 
-        ls vendor 
-        ls vendor/nim-nat-traversal
-        ls vendor/nim-nat-traversal/vendor/miniupnp
+        ls vendor/nim-nat-traversal/vendor/miniupnp/minissdpd
+        echo 
         make -j${ncpu} CI_CACHE=NimBinaries ${ARCH_OVERRIDE} QUICK_AND_DIRTY_COMPILER=1 update
         echo
         ./env.sh nim --version
