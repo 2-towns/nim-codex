@@ -173,6 +173,10 @@ runs:
       if: inputs.os == 'windows'
       shell: ${{ inputs.shell }} {0}
       run: |
+        ls -l vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd
+        echo 
+        ls -l vendor/nim-nat-traversal/vendor/miniupnp/minissdpd
+        echo
         rm vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c | true
         rm vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.h | true
         ln -s vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.c vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c
@@ -181,10 +185,6 @@ runs:
     - name: Build Nim and Codex dependencies
       shell: ${{ inputs.shell }} {0}
       run: |
-        ls -l vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd
-        echo 
-        ls -l vendor/nim-nat-traversal/vendor/miniupnp/minissdpd
-        echo
         make -j${ncpu} CI_CACHE=NimBinaries ${ARCH_OVERRIDE} QUICK_AND_DIRTY_COMPILER=1 update
         echo
         ./env.sh nim --version
