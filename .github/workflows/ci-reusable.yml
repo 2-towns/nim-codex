@@ -37,9 +37,10 @@ jobs:
           install: >
             git
 
-      - name: MSYS2 (Windows All) - Downgrade to gcc 13
-        if: matrix.os == 'windows'
-        shell: msys2 {0}
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MSYS
+      - shell: msys2 {0}
         run: |
           git config --global core.symlinks true
 
