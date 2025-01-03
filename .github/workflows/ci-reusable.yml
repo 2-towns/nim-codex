@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 120
     steps:
       - name: MSYS2 (Windows i386)
-        if: inputs.os == 'windows' 
+        if: matrix.os == 'windows' 
         uses: msys2/setup-msys2@v2
         with:
           path-type: inherit
@@ -38,7 +38,7 @@ jobs:
             git
 
       - name: MSYS2 (Windows All) - Downgrade to gcc 13
-        if: inputs.os == 'windows'
+        if: matrix.os == 'windows'
         shell: msys2 {0}
         run: |
           git config --global core.symlinks true
