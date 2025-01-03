@@ -173,8 +173,8 @@ runs:
       if: inputs.os == 'windows'
       shell: ${{ inputs.shell }} {0}
       run: |
-        mklink vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c  vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.c
-        mklink vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.h  vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.h
+        ln -s vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.c vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c
+        ln -s vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.h vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.h
 
     - name: Build Nim and Codex dependencies
       shell: ${{ inputs.shell }} {0}
