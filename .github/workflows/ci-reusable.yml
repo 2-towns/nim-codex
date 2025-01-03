@@ -37,12 +37,11 @@ jobs:
           install: >
             git
 
-      - name: MSYS2 (Windows i386)
-        if: inputs.os == 'windows' 
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW32
-        run: git config --global core.symlinks true
+      - name: MSYS2 (Windows All) - Downgrade to gcc 13
+        if: inputs.os == 'windows'
+        shell: msys2 {0}
+        run: |
+          git config --global core.symlinks true
 
       - name: Checkout sources
         uses: actions/checkout@v4
