@@ -169,13 +169,20 @@ runs:
       shell: ${{ inputs.shell }} {0}
       run: echo "NIM_COMMIT=${{ inputs.nim_version }}" >> ${GITHUB_ENV}
 
+    - name: MSYS2 (Windows All) - Downgrade to gcc 13
+      if: inputs.os == 'windows'
+      shell: ${{ inputs.shell }} {0}
+      run: |
+        mklink vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c  vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.c
+        mklink vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.h  vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.h
+
     - name: Build Nim and Codex dependencies
       shell: ${{ inputs.shell }} {0}
       run: |
         ls -l vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd
         echo 
         ls -l vendor/nim-nat-traversal/vendor/miniupnp/minissdpd
-        echo 
+        echo
         make -j${ncpu} CI_CACHE=NimBinaries ${ARCH_OVERRIDE} QUICK_AND_DIRTY_COMPILER=1 update
         echo
         ./env.sh nim --version
