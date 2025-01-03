@@ -173,8 +173,8 @@ runs:
       if: inputs.os == 'windows'
       shell: ${{ inputs.shell }} {0}
       run: |
-        rm vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c
-        rm vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.h
+        rm vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c | true
+        rm vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.h | true
         ln -s vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.c vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c
         ln -s vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.h vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.h
 
