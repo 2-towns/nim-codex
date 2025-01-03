@@ -37,12 +37,12 @@ jobs:
           install: >
             git
 
-      - uses: msys2/setup-msys2@v2
+      - name: MSYS2 (Windows i386)
+        if: inputs.os == 'windows' 
+        uses: msys2/setup-msys2@v2
         with:
-          msystem: MSYS
-      - shell: msys2 {0}
-        run: |
-          git config --global core.symlinks true
+          msystem: MINGW32
+        run: git config --global core.symlinks true
 
       - name: Checkout sources
         uses: actions/checkout@v4
