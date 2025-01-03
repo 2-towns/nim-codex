@@ -173,14 +173,14 @@ runs:
       if: inputs.os == 'windows'
       shell: ${{ inputs.shell }} {0}
       run: |
-        ls -l vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd
+        ls -l $PWD/vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd
         echo 
-        ls -l vendor/nim-nat-traversal/vendor/miniupnp/minissdpd
+        ls -l $PWD/vendor/nim-nat-traversal/vendor/miniupnp/minissdpd
         echo
-        rm vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c | true
-        rm vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.h | true
-        ln -s vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.c vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c
-        ln -s vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.h vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.h
+        rm $PWD/vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c | true
+        rm $PWD/vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.h | true
+        ln -s $PWD/vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.c vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.c
+        ln -s $PWD/vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd/getifaddr.h vendor/nim-nat-traversal/vendor/miniupnp/minissdpd/getifaddr.h
 
     - name: Build Nim and Codex dependencies
       shell: ${{ inputs.shell }} {0}
