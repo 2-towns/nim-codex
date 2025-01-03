@@ -174,11 +174,11 @@ runs:
       shell: ${{ inputs.shell }} {0}
       run: |
         echo $CMAKE_INSTALL_INCLUDEDIR 
-        CMAKE_INSTALL_INCLUDEDIR=include
 
     - name: Build Nim and Codex dependencies
       shell: ${{ inputs.shell }} {0}
       run: |
-        make -j${ncpu} CI_CACHE=NimBinaries ${ARCH_OVERRIDE} QUICK_AND_DIRTY_COMPILER=1 update
+        export CMAKE_INSTALL_INCLUDEDIR=include
+        CMAKE_INSTALL_INCLUDEDIR=include make -j${ncpu} CI_CACHE=NimBinaries ${ARCH_OVERRIDE} QUICK_AND_DIRTY_COMPILER=1 update
         echo
         ./env.sh nim --version
