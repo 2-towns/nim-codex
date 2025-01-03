@@ -83,7 +83,8 @@ runs:
       shell: ${{ inputs.shell }} {0}
       run: |
         pacman -U --noconfirm https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-gcc-13.2.0-6-any.pkg.tar.zst https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-gcc-libs-13.2.0-6-any.pkg.tar.zst
-
+        git config --global core.symlinks true
+        
     - name: Derive environment variables
       shell: ${{ inputs.shell }} {0}
       run: |

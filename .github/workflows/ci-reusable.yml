@@ -28,10 +28,6 @@ jobs:
     runs-on: ${{ matrix.builder }}
     timeout-minutes: 120
     steps:
-      - name: core.symlinks
-        run: |
-          git config --global core.symlinks true
-          
       - name: Checkout sources
         uses: actions/checkout@v4
         with:
