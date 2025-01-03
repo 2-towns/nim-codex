@@ -39,7 +39,6 @@ jobs:
 
       - name: MSYS2 (Windows All) - Downgrade to gcc 13
         if: matrix.os == 'windows'
-        shell: ${{ matrix.shell }} {0}
         run: |
           git config --global core.symlinks true
 
