@@ -173,6 +173,8 @@ runs:
       if: inputs.os == 'windows'
       shell: ${{ inputs.shell }} {0}
       run: |
+        PWD=$(pwd)
+        echo $PWD
         ls -l $PWD/vendor/nim-nat-traversal/vendor/miniupnp/miniupnpd
         echo 
         ls -l $PWD/vendor/nim-nat-traversal/vendor/miniupnp/minissdpd
