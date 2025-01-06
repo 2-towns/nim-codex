@@ -51,8 +51,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Homebrew (macOS)
-        if: matrix.os == 'windows'
-        shell: ${{ matrix.shell }} {0}
+        if: input.os == 'windows'
+        shell: msys2 {0}
         run: |
           git config --global core.symlinks true
           git config core.symlinks true
