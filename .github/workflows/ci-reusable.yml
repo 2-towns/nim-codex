@@ -28,6 +28,8 @@ jobs:
     runs-on: ${{ matrix.builder }}
     timeout-minutes: 120
     steps:
+      - run: git config --global core.symlinks true
+
       - name: MSYS2 (Windows i386)
         if: matrix.os == 'windows' 
         uses: msys2/setup-msys2@v2
