@@ -173,16 +173,15 @@ runs:
       if: inputs.os == 'windows'
       shell: ${{ inputs.shell }} {0}
       run: |
-        echo $CMAKE_INSTALL_INCLUDEDIR 
-
-    - name: Build Nim and Codex dependencies
-      shell: ${{ inputs.shell }} {0}
-      run: |
         git config --show-scope --show-origin core.symlinks
         git config --global core.symlinks true
         git config core.symlinks true
         git config --global core.autocrlf false
         git config --global core.eol lf
+
+    - name: Build Nim and Codex dependencies
+      shell: ${{ inputs.shell }} {0}
+      run: |
         make -j${ncpu} CI_CACHE=NimBinaries ${ARCH_OVERRIDE} QUICK_AND_DIRTY_COMPILER=1 update
         echo
         ./env.sh nim --version
