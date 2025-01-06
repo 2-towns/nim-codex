@@ -42,6 +42,9 @@ jobs:
         shell: msys2 {0}
         run: |
           git config --global core.symlinks true
+          git config core.symlinks true
+          git config --global core.autocrlf false
+          git config --global core.eol lf
 
       - name: Checkout sources
         uses: actions/checkout@v4
