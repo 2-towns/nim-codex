@@ -246,24 +246,24 @@ proc streamEntireDataset(
   if manifest.protected:
     # Retrieve, decode and save to the local store all EС groups
     proc erasureJob(): Future[?!void] {.async.} =
-      try:
+      # try:
         # Spawn an erasure decoding job
-        let
-          erasure = Erasure.new(
-            self.networkStore,
-            leoEncoderProvider,
-            leoDecoderProvider)
-        without _ =? (await erasure.decode(manifest)), error:
-          error "Unable to erasure decode manifest", manifestCid, exc = error.msg
-          return failure(error)
+      let
+        erasure = Erasure.new(
+          self.networkStore,
+          leoEncoderProvider,
+          leoDecoderProvider)
+      without _ =? (await erasure.decode(manifest)), error:
+        error "Unable to erasure decode manifest", manifestCid, exc = error.msg
+        return failure(error)
 
-        return success()
+      return success()
       # --------------------------------------------------------------------------
       # FIXME this is a HACK so that the node does not crash during the workshop.
       #   We should NOT catch Defect.
-      except Exception as exc:
-        trace "Exception decoding manifest", manifestCid, exc = exc.msg
-        return failure(exc.msg)
+      # except Exception as exc:
+      #   trace "Exception decoding manifest", manifestCid, exc = exc.msg
+      #   return failure(exc.msg)
       # --------------------------------------------------------------------------
 
     if err =? (await erasureJob()).errorOption:
@@ -428,8 +428,8 @@ proc setupRequest(
   # FIXME this is a BAND-AID to address
   #   https://github.com/codex-storage/nim-codex/issues/852 temporarily for the
   #   workshop. Remove this once we get that fixed.
-  if manifest.blocksCount.uint == ecK:
-    return failure("Cannot setup slots for a dataset with ecK == numBlocks. Please use a larger file or a different combination of `nodes` and `tolerance`.")
+  # if manifest.blocksCount.uint == ecK:
+  #   return failure("Cannot setup slots for a dataset with ecK == numBlocks. Please use a larger file or a different combination of `nodes` and `tolerance`.")
   # ----------------------------------------------------------------------------
 
 
