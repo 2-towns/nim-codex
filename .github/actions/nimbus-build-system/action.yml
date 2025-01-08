@@ -86,7 +86,7 @@ runs:
 
     - name: Use gcc 14
       # Should be removed when ubuntu-latest is 26.04
-      if : ${{ matrix.target.os == 'linux' }}
+      if : ${{ inputs.os == 'linux' }}
       shell: ${{ inputs.shell }} {0}
       run: |
         # Add GCC-14 to alternatives
@@ -187,6 +187,7 @@ runs:
     - name: Build Nim and Codex dependencies
       shell: ${{ inputs.shell }} {0}
       run: |
+        gcc --version
         make -j${ncpu} CI_CACHE=NimBinaries ${ARCH_OVERRIDE} QUICK_AND_DIRTY_COMPILER=1 update
         echo
         ./env.sh nim --version
