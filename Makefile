@@ -178,11 +178,11 @@ coverage:
 	$(MAKE) NIMFLAGS="$(NIMFLAGS) --lineDir:on --passC:-fprofile-arcs --passC:-ftest-coverage --passL:-fprofile-arcs --passL:-ftest-coverage" test
 	cd nimcache/release/testCodex && rm -f *.c
 	mkdir -p coverage
-	lcov --capture --directory nimcache/release/testCodex --output-file coverage/coverage.info --keep-going
+	lcov --capture --directory nimcache/release/testCodex --output-file coverage/coverage.info --ignore-errors gcov,mismatch --keep-going 
 	shopt -s globstar && ls $$(pwd)/codex/{*,**/*}.nim
-	shopt -s globstar && lcov --extract coverage/coverage.info $$(pwd)/codex/{*,**/*}.nim --output-file coverage/coverage.f.info --keep-going
+	shopt -s globstar && lcov --extract coverage/coverage.info $$(pwd)/codex/{*,**/*}.nim --output-file coverage/coverage.f.info --ignore-errors gcov,mismatch --keep-going
 	echo -e $(BUILD_MSG) "coverage/report/index.html"
-	genhtml coverage/coverage.f.info --output-directory coverage/report
+	genhtml coverage/coverage.f.info --output-directory coverage/report --ignore-errors empty
 
 show-coverage:
 	if which open >/dev/null; then (echo -e "\e[92mOpening\e[39m HTML coverage report in browser..." && open coverage/report/index.html) || true; fi
