@@ -189,6 +189,12 @@ runs:
       run: |
         git config --global core.symlinks false
 
+    - name: MSYS2 (Windows All) - Downgrade to gcc 13
+      if: inputs.os == 'macos'
+      shell: ${{ inputs.shell }} {0}
+      run: |
+        arch -x86_64 zsh
+
     - name: Build Nim and Codex dependencies
       shell: ${{ inputs.shell }} {0}
       run: |
