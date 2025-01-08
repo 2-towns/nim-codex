@@ -91,8 +91,11 @@ runs:
       run: |
         # Add GCC-14 to alternatives
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 14
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 14
+
         # Set GCC-14 as the default
         sudo update-alternatives --set gcc /usr/bin/gcc-14
+        sudo update-alternatives --set g++ /usr/bin/g++-14
 
     - uses: actions/setup-python@v5
       if : ${{ inputs.os == 'macos' }}
