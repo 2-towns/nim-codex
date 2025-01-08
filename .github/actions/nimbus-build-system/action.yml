@@ -82,7 +82,7 @@ runs:
       if: inputs.os == 'windows'
       shell: ${{ inputs.shell }} {0}
       run: |
-        pacman -U --noconfirm https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-gcc-13.2.0-6-any.pkg.tar.zst https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-gcc-libs-13.2.0-6-any.pkg.tar.zst
+        pacman -U --noconfirm https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-gcc-14.2.0-2-any.pkg.tar.zst https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-gcc-libs-14.2.0-2-any.pkg.tar.zst
 
     - name: Use gcc 14
       # Should be removed when ubuntu-latest is 26.04
