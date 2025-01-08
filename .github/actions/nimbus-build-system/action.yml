@@ -86,7 +86,7 @@ runs:
     #     git config --global core.symlinks true
     - name: Use gcc 14
       # Should be removed when ubuntu-latest is 26.04
-      if : ${{ matrix.target.builder == 'ubuntu-latest' }}
+      if : ${{ matrix.target.os == 'linux' }}
       run: |
         # Add GCC-14 to alternatives
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 14
