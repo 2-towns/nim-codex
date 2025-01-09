@@ -69,8 +69,10 @@ jobs:
 
       - name: Generate coverage data
         run: |
+          gcc --version
           gcov --version
-          apt list -a lcov
+          lcov --version
+          nim --version
           # make -j${ncpu} coverage
           make -j${ncpu} coverage-script
         shell: bash
