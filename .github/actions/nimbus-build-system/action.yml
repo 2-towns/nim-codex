@@ -86,16 +86,14 @@ runs:
 
     - name: Use gcc 14
       # Should be removed when ubuntu-latest is 26.04
-      if : ${{ inputs.os == 'linux' }}
+      if : ${{ inputs.os == 'linux' &&  !inputs.coverage  }}
       shell: ${{ inputs.shell }} {0}
       run: |
         # Add GCC-14 to alternatives
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 14
-        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 12 --slave /usr/bin/gcov gcov /usr/bin/gcov-12
         
         # Set GCC-14 as the default
         sudo update-alternatives --set gcc /usr/bin/gcc-14
-        sudo update-alternatives --set g++ /usr/bin/g++-12
 
     - name: Derive environment variables
       shell: ${{ inputs.shell }} {0}
@@ -186,12 +184,6 @@ runs:
       shell: ${{ inputs.shell }} {0}
       run: |
         git config --global core.symlinks false
-
-    - name: MSYS2 (Windows All) - Downgrade to gcc 13
-      if: inputs.os == 'macos'
-      shell: ${{ inputs.shell }} {0}
-      run: |
-        arch -x86_64 zsh
 
     - name: Build Nim and Codex dependencies
       shell: ${{ inputs.shell }} {0}

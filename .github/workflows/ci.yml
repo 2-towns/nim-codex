@@ -48,7 +48,7 @@ jobs:
       cache_nonce: ${{ needs.matrix.outputs.cache_nonce }}
 
   coverage:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
@@ -61,17 +61,21 @@ jobs:
         with:
           os: linux
           nim_version: ${{ env.nim_version }}
+          coverage: true
 
-      - name: Setup LCOV
-        uses: hrishikesh-kadam/setup-lcov@v1
-        with:
-          ref: v1.16
+      # - name: Setup LCOV
+      #   uses: hrishikesh-kadam/setup-lcov@v1
+      #   with:
+      #     ref: v1.16
 
       - name: Generate coverage data
         run: |
           gcc --version
           gcov --version
-          lcov --version
+          lcov --version  
+          echo $CFLAGS
+          echo $CXXFLAGS
+          echo $NIMFLAGS
           # make -j${ncpu} coverage
           make -j${ncpu} coverage-script
         shell: bash
