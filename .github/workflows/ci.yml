@@ -72,7 +72,6 @@ jobs:
           gcc --version
           gcov --version
           lcov --version
-          nim --version
           # make -j${ncpu} coverage
           make -j${ncpu} coverage-script
         shell: bash
