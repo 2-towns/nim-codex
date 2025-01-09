@@ -92,6 +92,10 @@ task coverage, "generates code coverage report":
 
   echo "======== Running Tests ======== "
   test "coverage", srcDir = "tests/", params = " --nimcache:nimcache/coverage -d:release -d:codex_enable_proof_failures=true"
+  exec("nim --version")
+  exec("lcov --version")
+  exec("rm nimcache/*.c")
+  exec("ls nimcache/coverage")
   exec("rm nimcache/coverage/*.c")
   rmDir("coverage"); mkDir("coverage")
   echo " ======== Running LCOV ======== "
