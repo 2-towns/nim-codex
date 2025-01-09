@@ -162,10 +162,18 @@ asyncchecksuite "Asynchronous Tests":
     check (await heap.pop) == 4
 
   test "Test update":
+    echo "before newAsyncHeapQueue"
+
     var heap = newAsyncHeapQueue[Task](5)
 
-    for item in [("a", 4), ("b", 3), ("c", 2)]:
+    let data = [("a", 4), ("b", 3), ("c", 2)]
+
+    echo "after newAsyncHeapQueue"
+    for item in data:
+      echo "before pushNoWait"
       check heap.pushNoWait(item).isOk
+
+    echo "after pushNoWait"
 
     check heap[0] == (name: "c", priority: 2)
     check heap.update((name: "a", priority: 1))
@@ -174,7 +182,9 @@ asyncchecksuite "Asynchronous Tests":
   test "Test pushOrUpdate - update":
     var heap = newAsyncHeapQueue[Task](3)
 
-    for item in [("a", 4), ("b", 3), ("c", 2)]:
+    let data = [("a", 4), ("b", 3), ("c", 2)]
+
+    for item in data:
       check heap.pushNoWait(item).isOk
 
     check heap[0] == (name: "c", priority: 2)
@@ -184,7 +194,9 @@ asyncchecksuite "Asynchronous Tests":
   test "Test pushOrUpdate - push":
     var heap = newAsyncHeapQueue[Task](2)
 
-    for item in [("a", 4), ("b", 3)]:
+    let data = [("a", 4), ("b", 3)]
+
+    for item in data:
       check heap.pushNoWait(item).isOk
 
     check heap[0] == ("b", 3)                 # sanity check for order
