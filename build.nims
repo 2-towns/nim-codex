@@ -98,7 +98,7 @@ task coverage, "generates code coverage report":
   # exec("rm nimcache/coverage/*.c")
   rmDir("coverage"); mkDir("coverage")
   echo " ======== Running LCOV ======== "
-  exec("lcov --capture --directory nimcache/coverage --output-file coverage/coverage.info")
+  exec("lcov --capture --directory nimcache --output-file coverage/coverage.info")
   exec("lcov --extract coverage/coverage.info --output-file coverage/coverage.f.info " & nimSrcs)
   echo " ======== Generating HTML coverage report ======== "
   exec("genhtml coverage/coverage.f.info --output-directory coverage/report ")
