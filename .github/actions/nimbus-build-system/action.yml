@@ -20,7 +20,10 @@ inputs:
     default: "bash --noprofile --norc -e -o pipefail"
   coverage:
     description: "True if the process is used for coverage"
-    default: false
+    default: 0
+    options:
+      - 0
+      - 1
 runs:
   using: "composite"
   steps:
@@ -89,7 +92,7 @@ runs:
 
     - name: Install gcc 14 on Linux
       # We don't want to install gcc 14 for coverage (Ubuntu 20.04)
-      if : inputs.os == 'linux'
+      if : inputs.os == 'linux' && inputs.coverage == 0
       shell: ${{ inputs.shell }} {0}
       run: |
         # Add GCC-14 to alternatives

@@ -78,7 +78,7 @@ jobs:
         with:
           os: linux
           nim_version: ${{ env.nim_version }}
-          coverage: true
+          coverage: 1
 
       - name: Generate coverage data
         run: |
