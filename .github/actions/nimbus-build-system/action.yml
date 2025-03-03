@@ -89,7 +89,7 @@ runs:
 
     - name: Install gcc 14 on Linux
       # We don't want to install gcc 14 for coverage (Ubuntu 20.04)
-      if : inputs.os == 'linux' && !inputs.coverage
+      if : inputs.os == 'linux' && inputs.coverage == false
       shell: ${{ inputs.shell }} {0}
       run: |
         # Add GCC-14 to alternatives
