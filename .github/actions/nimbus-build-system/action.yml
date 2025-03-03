@@ -89,13 +89,14 @@ runs:
 
     - name: Install gcc 14 on Linux
       # We don't want to install gcc 14 for coverage (Ubuntu 20.04)
-      if : ${{ inputs.os == 'linux' && !inputs.coverage }}
+      if : inputs.os == 'linux' && !inputs.coverage
       shell: ${{ inputs.shell }} {0}
       run: |
         # Add GCC-14 to alternatives
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 14
         # Set GCC-14 as the default
         sudo update-alternatives --set gcc /usr/bin/gcc-14
+        gcc --version 
 
     - name: Install ccache on Linux/Mac
       if: inputs.os == 'linux' || inputs.os == 'macos'
